@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVICEACCOUNT_TOKEN=`cat /var/run/secrets/kubernetes.io/token`
+SERVICEACCOUNT_TOKEN=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 
 SECRET_NAME="${SECRET_NAME:-psono-secret}"
 RELEASE_NAMESPACE="${RELEASE_NAMESPACE:-psono}"
