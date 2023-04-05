@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+  - cluster:
+      insecure-skip-tls-verify: true
+      server: https://kubernetes.default:6443
+    name: kubernetes.default:6443
+contexts:
+  - context:
+      cluster: kubernetes.default:6443
+      namespace: myexample
+      user: myexample-sa
+    name: default
+current-context: default
+kind: Config
+preferences: {}
+users:
+  - name: myexample-sa
+    user:
+      token: "SATOKEN"
