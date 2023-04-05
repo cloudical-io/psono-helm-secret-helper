@@ -11,7 +11,7 @@ def main():
     private_key_hex = box.encode(encoder=nacl.encoding.HexEncoder)
     public_key_hex = box.public_key.encode(encoder=nacl.encoding.HexEncoder)
 
-    with open('secrets.env.new', 'a') as f:
+    with open('secrets.env', 'a') as f:
 
         SECRET_KEY = (''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"')
         ACTIVATION_LINK_SECRET = (''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"')
