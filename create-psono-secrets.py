@@ -6,19 +6,19 @@ import secrets
 import bcrypt
 
 def main():
-    uni = string.ascii_letters + string.digits
+    uni = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     box = PrivateKey.generate()
     private_key_hex = box.encode(encoder=nacl.encoding.HexEncoder)
     public_key_hex = box.public_key.encode(encoder=nacl.encoding.HexEncoder)
 
-    with open('secrets.env', 'a') as f:
+    with open('secrets.env.new', 'a') as f:
 
-        SECRET_KEY = repr((''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"'))
-        ACTIVATION_LINK_SECRET = repr((''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"'))
-        DB_SECRET = repr((''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"'))
-        EMAIL_SECRET_SALT = repr(str(bcrypt.gensalt().decode()))
-        PRIVATE_KEY = repr(str(private_key_hex.decode()))
-        PUBLIC_KEY = repr(str(public_key_hex.decode()))
+        SECRET_KEY = (''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"')
+        ACTIVATION_LINK_SECRET = (''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"')
+        DB_SECRET = (''.join([secrets.choice(uni) for i in range(64)])).replace('\'', '"')
+        EMAIL_SECRET_SALT = str(bcrypt.gensalt().decode())
+        PRIVATE_KEY = str(private_key_hex.decode())
+        PUBLIC_KEY = str(public_key_hex.decode())
 
         f.write(f'PSONO_SECRET_KEY={SECRET_KEY}\n')
         f.write(f'PSONO_ACTIVATION_LINK_SECRET={ACTIVATION_LINK_SECRET}\n')
